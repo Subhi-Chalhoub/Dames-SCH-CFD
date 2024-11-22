@@ -30,7 +30,8 @@ while True:
             # Déplacement vers la gauche
             elif event.key == pygame.K_LEFT:
                 position_pion = max(position_pion - 1, 0) # Limite le pion au bord gauche
-            if
+            if event.key == pygame.K_DOWN:
+                position_pion = min(position_pion - 1,)
 
     # Dessin de la ligne et du pion
     fenetre.fill(BLANC)
