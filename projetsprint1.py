@@ -14,7 +14,7 @@ position_pion = 0
 pion_image = pygame.image.load("MA-24_pion.png")
 pion_image = pygame.transform.scale(pion_image,
                                     (TAILLE_CASE, TAILLE_CASE))
-# test
+
 # Boucle principale
 while True:
     for event in pygame.event.get():
@@ -41,3 +41,5 @@ while True:
 
     pygame.display.flip()
     pygame.time.Clock().tick(30)  # Limite la vitesse de la boucle
+
+    #commm
