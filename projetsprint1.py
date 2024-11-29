@@ -9,7 +9,10 @@ pygame.display.set_caption("sprint1")
 BLANC, NOIR = (255, 255, 255), (0, 0, 0)
 TAILLE_CASE, NOMBRE_CASES = 80, 10
 position_pion = [0, 0]
-position_pion_noir = [9,9]
+position_pion_noir = [1,9]
+
+nb_pion = 160
+nb_pion_noir = 160
 
 # Charger l'image du pion
 pion_image = pygame.image.load("MA-24_pion.png")
@@ -50,8 +53,15 @@ while True:
                 pygame.draw.rect(fenetre, (255, 255, 255), rectangle_case, 1)
 
     # Affiche l'image du pion à la position actuelle
-    fenetre.blit(pion_image, (position_pion[0] * TAILLE_CASE, position_pion[1] * TAILLE_CASE))
-    fenetre.blit(pion_image_noir, (position_pion_noir[0] * TAILLE_CASE, position_pion_noir[1] * TAILLE_CASE))
+    for i in range(20):
+        fenetre.blit(pion_image, (position_pion[0] * TAILLE_CASE + i * nb_pion, position_pion[1] * TAILLE_CASE))
+
+
+    for i in range(20):
+        fenetre.blit(pion_image_noir, (position_pion_noir[0] * TAILLE_CASE + i * nb_pion_noir, position_pion_noir[1] * TAILLE_CASE))
+    if (ligne) % 2 == 0:
+        fenetre.blit(pion_image_noir, (position_pion_noir[0] * TAILLE_CASE, position_pion_noir[3] * TAILLE_CASE))
+
 
     pygame.display.flip()
     pygame.time.Clock().tick(30)  # Limite la vitesse de la boucle
