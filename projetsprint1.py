@@ -22,17 +22,13 @@ while True:
             # Déplacement vers la droite
             if event.key == pygame.K_RIGHT:
                 position_pion[0] = min(position_pion[0] + 1, NOMBRE_CASES - 1)  # Limite le pion au bord droit
+                position_pion[1] = min(position_pion[1] + 1, NOMBRE_CASES - 1)  # Limite le pion au bord bas
             # Déplacement vers la gauche
             elif event.key == pygame.K_LEFT:
                 position_pion[0] = max(position_pion[0] - 1, 0)  # Limite le pion au bord gauche
+                position_pion[1] = min(position_pion[1] + 1, NOMBRE_CASES - 1)  # Limite le pion au bord haut
             # Déplacement vers le bas
-            elif event.key == pygame.K_DOWN:
-                position_pion[1] = min(position_pion[1] + 1, NOMBRE_CASES - 1)  # Limite le pion au bord bas
-            # Déplacement vers le haut
-            elif event.key == pygame.K_UP:
-                position_pion[1] = max(position_pion[1] - 1, 0)
 
-                # Dessin de la ligne et du pion
     fenetre.fill(BLANC)
 
     for ligne in range(10):
