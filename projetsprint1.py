@@ -56,15 +56,12 @@ while True:
     for i in range(20):
         fenetre.blit(pion_image, (position_pion[0] * TAILLE_CASE + i * nb_pion, position_pion[1] * TAILLE_CASE))
 
-        pions_places = 100
-        for ligne in range(4):
-            for colonne in range(10):
-                if (ligne + colonne) % 2 == 0:
-                    if pions_places < nb_pion_noir:
-                        y = colonne * TAILLE_CASE
-                        x = ligne * TAILLE_CASE
-                        fenetre.blit(pion_image_noir, (y, x))
-                        pions_places -= 1
+
+    for i in range(20):
+        fenetre.blit(pion_image_noir, (position_pion_noir[0] * TAILLE_CASE + i * nb_pion_noir, position_pion_noir[1] * TAILLE_CASE))
+    if (ligne) % 2 == 0:
+        fenetre.blit(pion_image_noir, (position_pion_noir[0] * TAILLE_CASE, position_pion_noir[3] * TAILLE_CASE))
+
 
     pygame.display.flip()
     pygame.time.Clock().tick(30)  # Limite la vitesse de la boucle
