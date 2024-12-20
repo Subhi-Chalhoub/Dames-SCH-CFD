@@ -7,19 +7,19 @@ pygame.display.set_caption("sprint1")
 
 # Couleurs et paramètres
 BLANC, NOIR = (255, 255, 255), (0, 0, 0)
-TAILLE_CASE, NOMBRE_CASES = 80, 10
+TAILLE_CASE, NOMBRE_CASES = (75, 10)
 position_pion_blanc = [0, 0]
 position_pion_noir = [1,9]
 
-nb_pion = 160
-nb_pion_noir = 160
+nb_pion = 20
+nb_pion_noir = 20
 
 # Charger l'image du pion
-pion_image = pygame.image.load("MA-24_pion.png")
+pion_image = pygame.image.load("pion3DCV2.png")
 pion_image = pygame.transform.scale(pion_image,
                                     (TAILLE_CASE, TAILLE_CASE))
 
-pion_image_noir = pygame.image.load("MA-24_pion_noir.png")
+pion_image_noir = pygame.image.load("pion3DV2.png")
 pion_image_noir = pygame.transform.scale(pion_image_noir,
                                     (TAILLE_CASE, TAILLE_CASE))
 
@@ -55,21 +55,21 @@ while True:
                 pygame.draw.rect(fenetre, (255, 255, 255), rectangle_case, 1)
 
     # Affiche l'image du pion à la position actuelle
-    position_pion_blanc = 0
+    pions_places_blanc = 0
     for ligne in range(4):
         for colonne in range(10):
             if (ligne + colonne) % 2 == 0:
-                if position_pion_blanc < nb_pion:
+                if pions_places_blanc < nb_pion:
                     y = colonne * TAILLE_CASE
                     x = ligne * TAILLE_CASE
                     fenetre.blit(pion_image, (y, x))
-                    position_pion_blanc += 1
+                    pions_places_blanc += 1
 
 
     pions_places = 0
     for ligne in range(4):
         for colonne in range(10):
-            if (ligne + colonne) % 2==0:
+            if (ligne + colonne) % 2 == 0:
                 if pions_places < nb_pion_noir:
                     y = colonne * TAILLE_CASE
                     x = ligne * TAILLE_CASE+6*TAILLE_CASE
