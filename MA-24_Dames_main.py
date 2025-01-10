@@ -1,4 +1,11 @@
-﻿import pygame
+﻿## Auteurs : Subhi Chalhoub, Christian Fonseca Diogo
+## Date : 10.01.2025
+## version :
+
+
+
+
+import pygame
 from ma24_dames_gfx import dessiner_plateau, dessiner_pions, afficher_surbrillance, afficher_texte_tour
 from ma24_dames_rules import trouver_pion, mouvement_valide
 
@@ -11,10 +18,10 @@ VERT = (0, 255, 0, 100)
 
 # Charger l'image des pions
 try:
-    pion_image_blanc = pygame.image.load("MA-24_pion.png")
+    pion_image_blanc = pygame.image.load("pion2_1_bleu.png")
     pion_image_blanc = pygame.transform.scale(pion_image_blanc, (80, 80))
 
-    pion_image_noir = pygame.image.load("MA-24_pion_noir.png")
+    pion_image_noir = pygame.image.load("pion2_3_rouge.png")
     pion_image_noir = pygame.transform.scale(pion_image_noir, (80, 80))
 except pygame.error as e:
     print("Erreur lors du chargement des images :", e)

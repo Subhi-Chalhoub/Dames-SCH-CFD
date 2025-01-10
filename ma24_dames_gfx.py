@@ -33,5 +33,5 @@ def afficher_surbrillance(fenetre, position_selectionnee, DIMENSION_CASE, VERT):
 
 # Fonction pour afficher le texte du tour actuel
 def afficher_texte_tour(fenetre, FONT, tour_blanc):
-    texte_tour = FONT.render(f"Tour : {'Blancs' if tour_blanc else 'Noirs'}", True, NOIR)
+    texte_tour = FONT.render(f"Tour : {'Bleu' if tour_blanc else 'Rouge'}", True, NOIR)
     fenetre.blit(texte_tour, (10, 10))
