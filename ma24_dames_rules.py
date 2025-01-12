@@ -1,3 +1,4 @@
+
 # Fonction pour trouver le pion à une position
 def trouver_pion(position, pions):
     for pion in pions:
@@ -21,4 +22,10 @@ def mouvement_valide(pion, nouvelle_position, pions_allies, pions_ennemis, tour_
             pions_ennemis.remove(pion_intermediaire)  # Retirer le pion capturé
             return True
 
+    return False
+
+# Fonction pour promouvoir un pion en reine
+def promouvoir_si_necessaire(pion, tour_blanc, NOMBRE_CASES):
+    if (tour_blanc and pion[1] == NOMBRE_CASES - 1) or (not tour_blanc and pion[1] == 0):
+        return True  # Indique qu'il devient une reine
     return False

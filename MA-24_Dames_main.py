@@ -1,13 +1,6 @@
-﻿## Auteurs : Subhi Chalhoub, Christian Fonseca Diogo
-## Date : 10.01.2025
-## version :
-
-
-
-
 import pygame
 from ma24_dames_gfx import dessiner_plateau, dessiner_pions, afficher_surbrillance, afficher_texte_tour
-from ma24_dames_rules import trouver_pion, mouvement_valide
+from ma24_dames_rules import trouver_pion, mouvement_valide, promouvoir_si_necessaire
 
 # Initialiser Pygame et la fenêtre
 pygame.init()
@@ -16,13 +9,19 @@ pygame.display.set_caption("Jeu de Dames")
 BLANC = (255, 255, 255)
 VERT = (0, 255, 0, 100)
 
-# Charger l'image des pions
+# Charger l'image des pions et des reines
 try:
     pion_image_blanc = pygame.image.load("pion2_1_bleu.png")
     pion_image_blanc = pygame.transform.scale(pion_image_blanc, (80, 80))
 
     pion_image_noir = pygame.image.load("pion2_3_rouge.png")
     pion_image_noir = pygame.transform.scale(pion_image_noir, (80, 80))
+
+    reine_image_blanc = pygame.image.load("reine_bleue.png")
+    reine_image_blanc = pygame.transform.scale(reine_image_blanc, (80, 80))
+
+    reine_image_noir = pygame.image.load("reine_rouge.png")
+    reine_image_noir = pygame.transform.scale(reine_image_noir, (80, 80))
 except pygame.error as e:
     print("Erreur lors du chargement des images :", e)
     pygame.quit()
@@ -61,6 +60,12 @@ while True:
                     if mouvement_valide(position_selectionnee, [case_x, case_y], pions_actuels, pions_ennemis, tour_blanc):
                         position_selectionnee[0] = case_x
                         position_selectionnee[1] = case_y
+
+                        # Vérifiez si le pion doit être promu
+                        if promouvoir_si_necessaire(position_selectionnee, tour_blanc, NOMBRE_CASES):
+                            pions_actuels.remove(position_selectionnee)
+                            pions_actuels.append({"position": [case_x, case_y], "reine": True})
+
                         tour_blanc = not tour_blanc  # Changer de tour
                 position_selectionnee = None
             else:
@@ -71,7 +76,7 @@ while True:
     # Dessiner l'échiquier et les pions
     fenetre.fill(BLANC)
     dessiner_plateau(fenetre, NOMBRE_CASES)
-    dessiner_pions(fenetre, pions_blancs, pions_noirs, pion_image_blanc, pion_image_noir)
+    dessiner_pions(fenetre, pions_blancs, pions_noirs, pion_image_blanc, pion_image_noir, reine_image_blanc, reine_image_noir)
 
     # Afficher la surbrillance et le texte du tour
     afficher_surbrillance(fenetre, position_selectionnee, DIMENSION_CASE, VERT)

@@ -1,3 +1,4 @@
+
 import pygame
 
 # Couleurs et paramètres
@@ -18,11 +19,15 @@ def dessiner_plateau(fenetre, NOMBRE_CASES):
                 pygame.draw.rect(fenetre, BLANC, rectangle_case)
 
 # Fonction pour dessiner les pions
-def dessiner_pions(fenetre, pions_blancs, pions_noirs, pion_image_blanc, pion_image_noir):
+def dessiner_pions(fenetre, pions_blancs, pions_noirs, pion_image_blanc, pion_image_noir, reine_image_blanc, reine_image_noir):
     for pion in pions_blancs:
-        fenetre.blit(pion_image_blanc, (pion[0] * DIMENSION_CASE, pion[1] * DIMENSION_CASE))
+        image = reine_image_blanc if isinstance(pion, dict) and pion.get("reine") else pion_image_blanc
+        fenetre.blit(image, ((pion["position"][0] * DIMENSION_CASE, pion["position"][1] * DIMENSION_CASE) 
+                    if isinstance(pion, dict) else (pion[0] * DIMENSION_CASE, pion[1] * DIMENSION_CASE)))
     for pion in pions_noirs:
-        fenetre.blit(pion_image_noir, (pion[0] * DIMENSION_CASE, pion[1] * DIMENSION_CASE))
+        image = reine_image_noir if isinstance(pion, dict) and pion.get("reine") else pion_image_noir
+        fenetre.blit(image, ((pion["position"][0] * DIMENSION_CASE, pion["position"][1] * DIMENSION_CASE) 
+                    if isinstance(pion, dict) else (pion[0] * DIMENSION_CASE, pion[1] * DIMENSION_CASE)))
 
 # Fonction pour afficher la surbrillance d'une case
 def afficher_surbrillance(fenetre, position_selectionnee, DIMENSION_CASE, VERT):
