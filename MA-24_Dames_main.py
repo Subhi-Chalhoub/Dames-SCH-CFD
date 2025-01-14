@@ -1,3 +1,4 @@
+
 import pygame
 from ma24_dames_gfx import dessiner_plateau, dessiner_pions, afficher_surbrillance, afficher_texte_tour
 from ma24_dames_rules import trouver_pion, mouvement_valide, promouvoir_si_necessaire
@@ -54,15 +55,18 @@ while True:
 
             if position_selectionnee:
                 # Si un pion est sélectionné, vérifier le mouvement
-                if [case_x, case_y] not in pions_blancs + pions_noirs:  # Case libre
+                if [case_x, case_y] not in [p["position"] if isinstance(p, dict) else p for p in pions_blancs + pions_noirs]:  # Case libre
                     pions_actuels = pions_blancs if tour_blanc else pions_noirs
                     pions_ennemis = pions_noirs if tour_blanc else pions_blancs
                     if mouvement_valide(position_selectionnee, [case_x, case_y], pions_actuels, pions_ennemis, tour_blanc):
-                        position_selectionnee[0] = case_x
-                        position_selectionnee[1] = case_y
+                        if isinstance(position_selectionnee, dict):  # Si c'est une reine
+                            position_selectionnee["position"] = [case_x, case_y]
+                        else:
+                            position_selectionnee[0] = case_x
+                            position_selectionnee[1] = case_y
 
                         # Vérifiez si le pion doit être promu
-                        if promouvoir_si_necessaire(position_selectionnee, tour_blanc, NOMBRE_CASES):
+                        if not isinstance(position_selectionnee, dict) and promouvoir_si_necessaire(position_selectionnee, tour_blanc, NOMBRE_CASES):
                             pions_actuels.remove(position_selectionnee)
                             pions_actuels.append({"position": [case_x, case_y], "reine": True})
 
@@ -79,7 +83,7 @@ while True:
     dessiner_pions(fenetre, pions_blancs, pions_noirs, pion_image_blanc, pion_image_noir, reine_image_blanc, reine_image_noir)
 
     # Afficher la surbrillance et le texte du tour
-    afficher_surbrillance(fenetre, position_selectionnee, DIMENSION_CASE, VERT)
+    afficher_surbrillance(fenetre, position_selectionnee["position"] if isinstance(position_selectionnee, dict) else position_selectionnee, DIMENSION_CASE, VERT)
     afficher_texte_tour(fenetre, FONT, tour_blanc)
 
     pygame.display.flip()
