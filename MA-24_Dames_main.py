@@ -1,4 +1,3 @@
-
 import pygame
 from ma24_dames_gfx import dessiner_plateau, dessiner_pions, afficher_surbrillance, afficher_texte_tour
 from ma24_dames_rules import trouver_pion, mouvement_valide, promouvoir_si_necessaire
@@ -9,6 +8,8 @@ fenetre = pygame.display.set_mode((800, 800))
 pygame.display.set_caption("Jeu de Dames")
 BLANC = (255, 255, 255)
 VERT = (0, 255, 0, 100)
+ROUGE = (255, 0, 0)
+BLEU = (0, 0, 255)
 
 # Charger l'image des pions et des reines
 try:
@@ -32,6 +33,7 @@ except pygame.error as e:
 NOMBRE_CASES = 10
 DIMENSION_CASE = 80
 FONT = pygame.font.Font(None, 36)
+GRAND_FONT = pygame.font.Font(None, 100)
 
 # Position des pions
 pions_blancs = [[col, row] for row in range(4) for col in range(NOMBRE_CASES) if (row + col) % 2 == 0]
@@ -40,6 +42,11 @@ pions_noirs = [[col, row + 6] for row in range(4) for col in range(NOMBRE_CASES)
 # Variables pour le jeu
 position_selectionnee = None
 tour_blanc = True  # Blanc commence
+jeu_termine = False
+
+def afficher_gagnant(fenetre, gagnant):
+    texte_gagnant = GRAND_FONT.render(f"L'équipe {gagnant} a gagné!", True, BLEU if gagnant == "Bleu" else ROUGE)
+    fenetre.blit(texte_gagnant, (400 - texte_gagnant.get_width() // 2, 400 - texte_gagnant.get_height() // 2))
 
 # Boucle principale
 while True:
@@ -48,7 +55,7 @@ while True:
             pygame.quit()
             exit()
 
-        if event.type == pygame.MOUSEBUTTONDOWN:
+        if not jeu_termine and event.type == pygame.MOUSEBUTTONDOWN:
             # Récupérer la position du clic
             x, y = event.pos
             case_x, case_y = x // DIMENSION_CASE, y // DIMENSION_CASE
@@ -77,14 +84,27 @@ while True:
                 pions_actuels = pions_blancs if tour_blanc else pions_noirs
                 position_selectionnee = trouver_pion([case_x, case_y], pions_actuels)
 
+    # Vérifier les conditions de fin de jeu
+    if not jeu_termine:
+        if not pions_blancs:
+            jeu_termine = True
+            gagnant = "Rouge"
+        elif not pions_noirs:
+            jeu_termine = True
+            gagnant = "Bleu"
+
     # Dessiner l'échiquier et les pions
     fenetre.fill(BLANC)
     dessiner_plateau(fenetre, NOMBRE_CASES)
     dessiner_pions(fenetre, pions_blancs, pions_noirs, pion_image_blanc, pion_image_noir, reine_image_blanc, reine_image_noir)
 
     # Afficher la surbrillance et le texte du tour
-    afficher_surbrillance(fenetre, position_selectionnee["position"] if isinstance(position_selectionnee, dict) else position_selectionnee, DIMENSION_CASE, VERT)
-    afficher_texte_tour(fenetre, FONT, tour_blanc)
+    if not jeu_termine:
+        afficher_surbrillance(fenetre, position_selectionnee["position"] if isinstance(position_selectionnee, dict) else position_selectionnee, DIMENSION_CASE, VERT)
+        afficher_texte_tour(fenetre, FONT, tour_blanc)
+    else:
+        afficher_gagnant(fenetre, gagnant)
 
     pygame.display.flip()
     pygame.time.Clock().tick(30)  # Limiter la vitesse de la boucle
+
