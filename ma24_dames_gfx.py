@@ -37,6 +37,7 @@ def afficher_surbrillance(fenetre, position_selectionnee, DIMENSION_CASE, VERT):
         fenetre.blit(surbrillance, (position_selectionnee[0] * DIMENSION_CASE, position_selectionnee[1] * DIMENSION_CASE))
 
 # Fonction pour afficher le texte du tour actuel
+#La def a été faite par chatgpt
 def afficher_texte_tour(fenetre, FONT, tour_blanc):
     texte_tour = FONT.render(f"Tour : {'Bleu' if tour_blanc else 'Rouge'}", True, NOIR)
     fenetre.blit(texte_tour, (10, 10))

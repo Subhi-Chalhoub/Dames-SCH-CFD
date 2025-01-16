@@ -44,6 +44,7 @@ position_selectionnee = None
 tour_blanc = True  # Blanc commence
 jeu_termine = False
 
+# fait par chatgpt
 def afficher_gagnant(fenetre, gagnant):
     texte_gagnant = GRAND_FONT.render(f"L'équipe {gagnant} a gagné!", True, BLEU if gagnant == "Bleu" else ROUGE)
     fenetre.blit(texte_gagnant, (400 - texte_gagnant.get_width() // 2, 400 - texte_gagnant.get_height() // 2))
@@ -73,6 +74,7 @@ while True:
                             position_selectionnee[1] = case_y
 
                         # Vérifiez si le pion doit être promu
+                        #que ceci qui est fait par chatgpt
                         if not isinstance(position_selectionnee, dict) and promouvoir_si_necessaire(position_selectionnee, tour_blanc, NOMBRE_CASES):
                             pions_actuels.remove(position_selectionnee)
                             pions_actuels.append({"position": [case_x, case_y], "reine": True})
@@ -85,6 +87,7 @@ while True:
                 position_selectionnee = trouver_pion([case_x, case_y], pions_actuels)
 
     # Vérifier les conditions de fin de jeu
+    #fait par chatgpt
     if not jeu_termine:
         if not pions_blancs:
             jeu_termine = True
@@ -99,6 +102,7 @@ while True:
     dessiner_pions(fenetre, pions_blancs, pions_noirs, pion_image_blanc, pion_image_noir, reine_image_blanc, reine_image_noir)
 
     # Afficher la surbrillance et le texte du tour
+    # fait par chatgpt
     if not jeu_termine:
         afficher_surbrillance(fenetre, position_selectionnee["position"] if isinstance(position_selectionnee, dict) else position_selectionnee, DIMENSION_CASE, VERT)
         afficher_texte_tour(fenetre, FONT, tour_blanc)

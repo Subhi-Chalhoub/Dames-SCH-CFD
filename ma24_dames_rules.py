@@ -10,6 +10,7 @@ def trouver_pion(position, pions):
     return None
 
 # Fonction pour vérifier si un mouvement est valide
+# La def a été faite par chatgpt jusqu'à "returne false "
 def mouvement_valide(pion, nouvelle_position, pions_allies, pions_ennemis, tour_blanc):
     # Récupérer la position du pion, qu'il soit un dictionnaire (reine) ou une liste (pion normal)
     position_pion = pion["position"] if isinstance(pion, dict) else pion
@@ -17,6 +18,7 @@ def mouvement_valide(pion, nouvelle_position, pions_allies, pions_ennemis, tour_
     dy = nouvelle_position[1] - position_pion[1]
 
     # Déplacement pour les reines
+
     if isinstance(pion, dict) and pion.get("reine"):
         if abs(dx) == abs(dy):  # Déplacement diagonal
             step_x = dx // abs(dx)
@@ -41,6 +43,7 @@ def mouvement_valide(pion, nouvelle_position, pions_allies, pions_ennemis, tour_
             return True
 
     return False
+
 
 # Fonction pour promouvoir un pion en reine
 def promouvoir_si_necessaire(pion, tour_blanc, NOMBRE_CASES):
