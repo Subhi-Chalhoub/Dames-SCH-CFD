@@ -19,7 +19,7 @@ def mouvement_valide(pion, nouvelle_position, pions_allies, pions_ennemis, tour_
 
     # Déplacement pour les reines
     if isinstance(pion, dict) and pion.get("reine"):  # Si c'est une reine
-        if abs(dx) == abs(dy):  # Le déplacement doit être diagonal
+        if abs(dx) == abs(dy):  # Le déplacement doit être diagonale
             step_x = dx // abs(dx)  # Calcul de l'étape en x
             step_y = dy // abs(dy)  # Calcul de l'étape en y
             x, y = position_pion
@@ -27,7 +27,7 @@ def mouvement_valide(pion, nouvelle_position, pions_allies, pions_ennemis, tour_
                 x += step_x
                 y += step_y
                 if [x, y] in pions_allies + pions_ennemis:  # Si une case est occupée
-                    return False  # Mouvement invalide
+                    return False  # Mouvement est invalide
             return True  # Mouvement valide pour une reine
 
         # Capture d'un pion adverse (mouvement de deux cases) dans les deux sens pour une reine

@@ -17,7 +17,7 @@ def dessiner_plateau(fenetre, NOMBRE_CASES):
             if (ligne + colonne) % 2 == 0:  # Alterner entre cases noires et blanches
                 pygame.draw.rect(fenetre, NOIR, rectangle_case)  # Dessiner une case noire
             else:
-                pygame.draw.rect(fenetre, BLANC, rectangle_case)  # Dessiner une case blanche
+                pygame.draw.rect(fenetre, BLANC, rectangle_case)  # Dessine une case blanche
 
 
 # Fonction pour dessiner les pions et reines sur le plateau

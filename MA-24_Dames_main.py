@@ -16,19 +16,19 @@ BLEU = (0, 0, 255) # Bleu pour l'équipe alliée
 
 # Charger l'image des pions et des reines
 try:
-    # image pion simple bleu
+    # image pion simple bleu.png
     pion_image_blanc = pygame.image.load("pion2_1_bleu.png")
     pion_image_blanc = pygame.transform.scale(pion_image_blanc, (80, 80))
 
-    # image pion simple rouge
+    # image pion simple rouge.png
     pion_image_noir = pygame.image.load("pion2_3_rouge.png")
     pion_image_noir = pygame.transform.scale(pion_image_noir, (80, 80))
 
-    # image pion reine bleue
+    # image pion reine bleue.png
     reine_image_blanc = pygame.image.load("reine_bleue.png")
     reine_image_blanc = pygame.transform.scale(reine_image_blanc, (80, 80))
 
-    # image pion reine rouge
+    # image pion reine rouge.png
     reine_image_noir = pygame.image.load("reine_rouge.png")
     reine_image_noir = pygame.transform.scale(reine_image_noir, (80, 80))
 
