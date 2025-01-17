@@ -74,7 +74,7 @@ while True:
                             position_selectionnee[1] = case_y
 
                         # Vérifiez si le pion doit être promu
-                        #que ceci qui est fait par chatgpt
+                        #ceci qui est fait par chatgpt
                         if not isinstance(position_selectionnee, dict) and promouvoir_si_necessaire(position_selectionnee, tour_blanc, NOMBRE_CASES):
                             pions_actuels.remove(position_selectionnee)
                             pions_actuels.append({"position": [case_x, case_y], "reine": True})
@@ -87,7 +87,7 @@ while True:
                 position_selectionnee = trouver_pion([case_x, case_y], pions_actuels)
 
     # Vérifier les conditions de fin de jeu
-    #fait par chatgpt
+    # fait par chatgpt
     if not jeu_termine:
         if not pions_blancs:
             jeu_termine = True
@@ -111,4 +111,3 @@ while True:
 
     pygame.display.flip()
     pygame.time.Clock().tick(30)  # Limiter la vitesse de la boucle
-
