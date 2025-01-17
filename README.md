@@ -8,7 +8,7 @@ Ce développement aura lieu pendant notre formation de CFC informaticien.
 ## But du jeu 
 Le but du jeu de dames est de capturer toutes les pièces de l'adversaire ou de bloquer ses mouvements, de manière à ce qu'il ne puisse plus jouer. Chaque joueur déplace ses pions en diagonale sur un plateau de 100 cases, en essayant de capturer les pions de l'adversaire en sautant par-dessus eux. Lorsqu'un pion atteint la dernière rangée du côté adverse, il est promu en "dame", ce qui lui permet de se déplacer et de capturer dans les deux directions. La stratégie consiste à bien positionner ses pièces tout en restant attentif aux mouvements de l'adversaire.
 
-## Problèmes
+## Problème
 - Il reste un problème concernant la reine pour manger les pions, malheureusement nous ne trouvons pas la solution.
 
 ## Créateurs
